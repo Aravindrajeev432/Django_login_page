@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    
     <style>
       body{
         background: #F2D7D9;
@@ -71,6 +71,7 @@ justify-content: center;
   <div class="row">
     
     <form action="/" method="POST">
+      {% csrf_token %}
   <div class="mb-3 subinputbox">
     <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
 </div>
@@ -80,6 +81,9 @@ justify-content: center;
   </div>
   
   <button type="submit" class="btn btn-secondary">Submit</button>
+  {% for message in messages %}
+  <h3>{{message}}</h3>
+  {% endfor %}
 </form>
 </div>
 </div>
