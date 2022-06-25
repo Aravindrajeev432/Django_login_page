@@ -3,9 +3,11 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from .models import user
+from django.views.decorators.cache import cache_control
 
 
 # Create your views here.
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def index(request):
     if 'username' in request.session:
         return redirect(home)
@@ -16,20 +18,26 @@ def index(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             request.session['username'] = username
+
             return redirect(home)
         else:
             messages.info(request, 'Error')
             return redirect(index)
-    else : return render(request, 'index.html')
+    else:
+        return render(request, 'index.html')
 
 
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def home(request):
     if 'username' in request.session:
         # return redirect(index)
-        return render(request, 'home.html')
+        print(request.session['username'])
+        return render(request, 'home.html', {'usern': request.session['username']})
 
-    else : return redirect(index)
+    else:
+        return redirect(index)
+
+
 def user_logout(request):
-
     request.session.flush()
     return redirect(index)

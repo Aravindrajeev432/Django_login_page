@@ -5,16 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  </head>
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+            background: #F2D7D9;
+        }
+        .box1{
+            display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+        }
+        .card{
+            box-shadow:18px 17px 20px 0px #0000006b;
+        }
+    </style>
+
+</head>
   <body>
-    <div class="container">
+    <div class="container box1">
         <div class="row">
-    <form action="/" method="POST">
-        {% csrf_token %}
-        <a href="logout">
-        <button type="button" class="btn btn-secondary">logout</button>
-        </a>
-    </form>
+            <div class="card" style="width: 18rem;">
+                
+                <div class="card-body">
+                  <h5 class="card-title">Welcome  &nbsp;
+                    {{usern}}
+                    
+                    </h5>
+                  <p class="card-text">
+                    Click the logout button for logout
+                  </p>
+                  <form action="/" method="POST">
+                    {% csrf_token %}
+                    <a href="logout">
+                    <button type="button" class="btn btn-secondary">logout</button>
+                    </a>
+                </form>
+                </div>
+              </div>
+  
     </div>
             </div>
 
