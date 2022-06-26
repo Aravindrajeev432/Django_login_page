@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+
+{% block content %}
+{% for h in hdetails %}
+
+<div class="card" style="width: 18rem;">
+  {% load static %}
+  <!-- <img src="{% static 'my_app/example.jpg' %}" alt="My image"> -->
+  <img src="{% static 'images/' %}{{h.image}}.jpeg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><b>Location:</b>{{h.place}}</h5>
+    <p class="card-text"><b>Price:</b> {{h.price}}</p>
+    <a href="#" class="btn btn-primary">Buy Now</a>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

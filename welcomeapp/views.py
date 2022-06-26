@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from django.contrib import messages
-from .models import user
+from .models import Homes
 from django.views.decorators.cache import cache_control
 
 
@@ -30,14 +30,22 @@ def index(request):
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def home(request):
     if 'username' in request.session:
-        # return redirect(index)
-        print(request.session['username'])
-        return render(request, 'home.html', {'usern': request.session['username']})
+        home = Homes.objects.all()
+        return render(request, 'homesell.html', {'usern': request.session['username'],'hdetails':home})
 
     else:
         return redirect(index)
 
 
 def user_logout(request):
+    # if request.method == 'GET':
+    #     log= request.GET['logout']
+    #     if 'username' in request.session:
+    #
+    #         return redirect(home)
+    #     else:
+    #         print("index")
+    #         redirect(index)
+    #
     request.session.flush()
     return redirect(index)
