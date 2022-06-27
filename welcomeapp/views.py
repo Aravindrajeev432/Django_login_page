@@ -31,6 +31,7 @@ def index(request):
 def home(request):
     if 'username' in request.session:
         home = Homes.objects.all()
+
         return render(request, 'homesell.html', {'usern': request.session['username'],'hdetails':home})
 
     else:
@@ -47,5 +48,6 @@ def user_logout(request):
     #         print("index")
     #         redirect(index)
     #
+    print("A")
     request.session.flush()
     return redirect(index)
