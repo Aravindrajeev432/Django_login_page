@@ -21,7 +21,7 @@ def index(request):
 
             return redirect(home)
         else:
-            messages.info(request, 'Error')
+            messages.info(request, 'Invalid username/password')
             return redirect(index)
     else:
         return render(request, 'index.html')
